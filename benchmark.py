@@ -3,17 +3,6 @@
 import numpy as np
 import mpmath as mp
 import math
-def first_function(data):
-    """
-    first function
-    """
-    return abs(data[0] + data[1])
-
-def second_function(data):
-    """
-    first function
-    """
-    return data[0]
 
 def rosenbrock_2D(data):
     """
@@ -34,18 +23,13 @@ def rosenbrock(data):
         aux += (data[i]-1)**2 + 100*((data[i+1]-(data[i]**2))**2)
     return aux
 
-# TIRAR ESTE CICLO FOR
+
 def rastrigin(data):
     """
     Rastrigin’s function
     Whose global minimum is f∗ = 0 at (0, 0, ..., 0). This function is highly multimodal.
     """
-    # aux = 0
-    # for i in range(len(data)):
-    #     aux += data[i]**2 - 10 * np.cos(2 * np.pi * data[i])
-    # res1 = 10 * len(data) + aux
     res2 = 10 * len(data) + np.sum(np.square(data)-10*np.cos(2*np.pi*data))
-    # assert res1 == res2
     return res2
 
 def schwefel(data):
@@ -97,18 +81,11 @@ def yang(data, dimensions = 16):
     """
     Yang’s forest-like function has a global minimum f∗ = 0 at (0, 0, ..., 0).
     """
-    # aux, aux1 = 0, 0
-    # for i in range(dimensions):
-    #     aux += abs(data[i])
-    #     aux1 += mp.sin(data[i]**2)
-
-    # return aux*mp.exp(-aux1)
     return float(np.sum(abs(data)) * mp.exp(-(np.sum(np.sin(np.square(data))))))
 
 def michaelwicz(data):
     aux = 0
     for i in range(0, len(data),1):
-        # aux += - np.sum(np.sin(data) * np.sin(j*np.square(data)/np.pi)**(20))
         aux += np.sin(data[i]) * np.sin(i+1*np.square(data[i])/np.pi)**20
     return - aux
 
